@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Management.Domain.WorkerShifts
 {
@@ -21,11 +22,11 @@ namespace Management.Domain.WorkerShifts
 
         public DateTime CalndarDay { get; set; }
 
-
+        [JsonIgnore]
         [ForeignKey(nameof(WorkerId))]
         public virtual Worker Worker { get; set; }
 
-
+        [JsonIgnore]
         [ForeignKey(nameof(ShiftId))]
         public virtual Shift Shift { get; set; }
     }

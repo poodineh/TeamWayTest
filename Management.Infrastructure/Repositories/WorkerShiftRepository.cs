@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Management.Domain.Shifts;
+using System.Linq;
 
 namespace Management.Infrastructure.Repositories
 {
@@ -14,10 +15,12 @@ namespace Management.Infrastructure.Repositories
         {
         }
 
-        public WorkerShift AddWorkerShift(Worker worker, Shift shift)
+        public WorkerShift AddWorkerShift(Worker worker, Shift shift, DateTime date)
         {
-            var workerShift = new WorkerShift(worker, shift);
-            if (workerShift.ValidOnAdd())
+            var workerShift = new WorkerShift(worker, shift, date);
+            var ws = new List<WorkerShift>(this.List(x => (x.WorkerId == worker.Id && x.CalndarDay.Date == date.Date)));
+
+            if (workerShift.ValidOnAdd() && !ws.Any())
             {
                 this.Add(workerShift);
                 return workerShift;

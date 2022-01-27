@@ -10,12 +10,11 @@ namespace Management.Infrastructure
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Worker> Workers{ get; set; }
-        public DbSet<Shift> Shifts{ get; set; }
-        public DbSet<WorkerShift>  WorkerShifts { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
+        public DbSet<WorkerShift> WorkerShifts { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,6 +23,10 @@ namespace Management.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Shift>().HasData(
+                new Shift { Id = 1, StartTime = DateTime.Parse("2009-06-15T00:00:00"), EndTime = DateTime.Parse("2009-06-15T08:00:00") },
+                new Shift { Id = 2, StartTime = DateTime.Parse("2009-06-15T08:00:00"), EndTime = DateTime.Parse("2009-06-15T16:00:00") },
+                new Shift { Id = 3, StartTime = DateTime.Parse("2009-06-15T16:00:00"), EndTime = DateTime.Parse("2009-06-15T23:59:59") });
         }
     }
 }

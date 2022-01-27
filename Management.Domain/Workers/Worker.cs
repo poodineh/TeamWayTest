@@ -3,7 +3,7 @@ using Management.Domain.WorkerShifts;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
 
 namespace Management.Domain.Workers
 {
@@ -20,6 +20,7 @@ namespace Management.Domain.Workers
         [EmailAddress]
         public string Email { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<WorkerShift> WorkerShifts { get; set; }
     }
 }

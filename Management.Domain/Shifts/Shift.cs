@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Management.Domain.Shifts
 {
@@ -21,6 +22,7 @@ namespace Management.Domain.Shifts
 
         public bool OnlyWorkDays { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<WorkerShift> WorkerShifts { get; set; }
     }
 }

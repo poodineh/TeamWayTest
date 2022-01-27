@@ -1,4 +1,5 @@
 ﻿using Management.API.Services;
+using Management.Domain.Workers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Management.API.Controllers
@@ -18,5 +19,8 @@ namespace Management.API.Controllers
 
         [HttpGet("{id}")]
         public ActionResult GetWorker(int id) => Ok(_service.GetWorker(id));
+
+        [HttpPost]
+        public ActionResult PostWorker(Worker worker) => Ok(_service.AddWorker(worker));
     }
 }
