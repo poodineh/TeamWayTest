@@ -46,7 +46,7 @@ namespace Management.API.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             return services
-                .AddScoped<WorkerService>();
+                .AddScoped<AllService>();
         }
     }
 }
