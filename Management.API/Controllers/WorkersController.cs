@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Management.API.Controllers
 {
     [ApiController]
-    [Route("workers")]
+    [Route("api/workers")]
     public class WorkersController : ControllerBase
     {
         private readonly WorkerService _service;
@@ -19,9 +19,9 @@ namespace Management.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult Get()
-        {
-            return Ok(_service.GetWorkers());
-        }
+        public ActionResult GetWorkers() => Ok(_service.GetWorkers());
+
+        [HttpGet("{id}")]
+        public ActionResult GetWorker(int id) => Ok(_service.GetWorker(id));
     }
 }
